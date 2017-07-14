@@ -1,4 +1,4 @@
-package pe.pardoschicken.model;
+package pe.pardoschicken.reserva.model;
 
 import javax.persistence.*;
 import java.sql.Time;

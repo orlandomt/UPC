@@ -1,13 +1,14 @@
-package pe.pardoschicken.model;
+package pe.pardoschicken.reserva.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Orlando on 13/07/2017.
  */
 @Entity
-@Table(name = "reniec")
-public class Reniec {
+@Table(name = "cliente")
+public class Cliente {
 
     @Id
     @Column(name = "dni")
@@ -25,8 +26,18 @@ public class Reniec {
     @Column(name = "direccion")
     private String direccion;
 
-    @OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY)
-    private Cliente cliente;
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "correo")
+    private String correo;
+
+    @OneToOne
+    @JoinColumn(name = "reniec_dni")
+    private Reniec dniReniec;
+
+    @OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY)
+    private List<Reserva> reservas;
 
     public String getDni() {
         return dni;
@@ -68,11 +79,35 @@ public class Reniec {
         this.direccion = direccion;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public Reniec getDniReniec() {
+        return dniReniec;
+    }
+
+    public void setDniReniec(Reniec dniReniec) {
+        this.dniReniec = dniReniec;
+    }
+
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
     }
 }
