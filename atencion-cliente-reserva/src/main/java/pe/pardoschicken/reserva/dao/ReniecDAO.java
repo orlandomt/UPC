@@ -6,7 +6,7 @@ import pe.pardoschicken.reserva.model.Reniec;
 /**
  * Created by Orlando on 14/07/2017.
  */
-public interface ReniecDAO extends JpaRepository<Reniec, Long> {
+public interface ReniecDAO {
 
     Reniec buscarPorDni(String dni);
 }
