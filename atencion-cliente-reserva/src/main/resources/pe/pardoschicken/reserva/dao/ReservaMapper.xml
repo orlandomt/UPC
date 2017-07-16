@@ -1,0 +1,79 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pe.pardoschicken.reserva.dao.ReservaMapper">
+
+    <resultMap id="Cliente" type="pe.pardoschicken.reserva.model.Cliente">
+        <id property="dni" column="dni" />
+        <result property="nombre" column="nombre" />
+        <result property="apPaterno" column="ap_paterno" />
+        <result property="apMaterno" column="ap_materno" />
+        <result property="direccion" column="direccion" />
+        <result property="telefono" column="telefono" />
+        <result property="correo" column="correo" />
+        <result property="nombre" column="" />
+        <association property="dniReniec" resultMap="Reniec" />
+        <collection property="reservas" resultMap="Reserva" />
+    </resultMap>
+
+    <resultMap id="Hora" type="pe.pardoschicken.reserva.model.Hora">
+        <result property="horaReserva" column="hora_reserva" />
+        <result property="finalAprox" column="final_aprox" />
+        <association property="codReserva" resultMap="Reserva" />
+        <association property="idMesa" resultMap="Mesa" />
+    </resultMap>
+
+    <resultMap id="Local" type="pe.pardoschicken.reserva.model.Local">
+        <id property="codLocal" column="cod_local" />
+        <result property="ubicacion" column="ubicacion" />
+        <result property="telefono" column="telefono" />
+        <result property="aforo" column="aforo" />
+        <collection property="reservas" resultMap="Reserva" />
+        <collection property="mesas" resultMap="Mesa" />
+    </resultMap>
+
+    <resultMap id="Mesa" type="pe.pardoschicken.reserva.model.Mesa">
+        <id property="idMesa" column="id_mesa" />
+        <result property="numMesa" column="num_mesa" />
+        <association property="codLocal" resultMap="Local" />
+        <collection property="horas" resultMap="Hora" />
+    </resultMap>
+
+    <resultMap id="Pedido" type="pe.pardoschicken.reserva.model.Pedido">
+        <id property="idPedido" column="id_pedido" />
+        <result property="descripcion" column="descripcion" />
+        <result property="cantidad" column="cantidad" />
+        <result property="precioUnitario" column="precio_unitario" />
+        <collection property="reservaPedidoList" resultMap="ReservaPedido" />
+    </resultMap>
+
+    <resultMap id="Reniec" type="pe.pardoschicken.reserva.model.Reniec">
+        <id property="dni" column="dni" />
+        <result property="nombre" column="nombre" />
+        <result property="apPaterno" column="ap_paterno" />
+        <result property="apMaterno" column="ap_materno" />
+        <result property="direccion" column="direccion" />
+      <!--  <association property="cliente" resultMap="Cliente" /> -->
+    </resultMap>
+
+    <resultMap id="Reserva" type="pe.pardoschicken.reserva.model.Reserva">
+        <id property="codReserva" column="cod_reserva" />
+        <result property="fechaReserva" column="fecha_reserva" />
+        <result property="tipoReserva" column="tipo_reserva" />
+        <result property="motivo" column="motivo" />
+        <result property="fecha" column="fecha" />
+        <association property="cliente" resultMap="Cliente" />
+        <association property="local" resultMap="Local" />
+        <collection property="horas" resultMap="Hora" />
+        <collection property="reservaPedidos" resultMap="ReservaPedido" />
+    </resultMap>
+
+    <resultMap id="ReservaPedido" type="pe.pardoschicken.reserva.model.ReservaPedido">
+        <association property="codReserva" resultMap="Reserva" />
+        <association property="idPedido" resultMap="Pedido" />
+    </resultMap>
+
+    <select id="buscarPorDni" resultMap="Reniec" resultSetType="FORWARD_ONLY">
+        select * from reniec where dni = #{dni}
+    </select>
+
+</mapper>

@@ -1,34 +1,18 @@
 package pe.pardoschicken.reserva.model;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Orlando on 13/07/2017.
  */
-@Entity
-@Table(name = "local")
 public class Local {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "ood_local")
     private int codLocal;
-
-    @Column(name = "ubicacion")
     private String ubicacion;
-
-    @Column(name = "telefono")
     private String telefono;
-
-    @Column(name = "aforo")
     private int aforo;
-
-    @OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY)
     private List<Reserva> reservas = new ArrayList<>();
-
-    @OneToMany(mappedBy = "mesa", fetch = FetchType.LAZY)
     private List<Mesa> mesas = new ArrayList<>();
 
     public int getCodLocal() {

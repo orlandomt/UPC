@@ -1,32 +1,16 @@
 package pe.pardoschicken.reserva.model;
 
-import javax.persistence.*;
-
 /**
  * Created by Orlando on 13/07/2017.
  */
-@Entity
-@Table(name = "reniec")
 public class Reniec {
 
-    @Id
-    @Column(name = "dni")
     private String dni;
-
-    @Column(name = "nombre")
     private String nombre;
-
-    @Column(name = "ap_paterno")
     private String apPaterno;
-
-    @Column(name = "ap_materno")
     private String apMaterno;
-
-    @Column(name = "direccion")
     private String direccion;
-
-    @OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY)
-    private Cliente cliente;
+    //private Cliente cliente;
 
     public String getDni() {
         return dni;
@@ -68,11 +52,12 @@ public class Reniec {
         this.direccion = direccion;
     }
 
-    public Cliente getCliente() {
+    /*public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    */
 }

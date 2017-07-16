@@ -1,28 +1,15 @@
 package pe.pardoschicken.reserva.model;
 
-import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by Orlando on 13/07/2017.
  */
-@Entity
-@Table(name = "mesa")
 public class Mesa {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id_mesa")
     private int idMesa;
-
-    @Column(name = "num_mesa")
     private int numMesa;
-
-    @ManyToOne
-    @JoinColumn(name = "cod_local")
     private Local codLocal;
-
-    @OneToMany(mappedBy = "hora", fetch = FetchType.LAZY)
     private List<Hora> horas;
 
     public int getIdMesa() {

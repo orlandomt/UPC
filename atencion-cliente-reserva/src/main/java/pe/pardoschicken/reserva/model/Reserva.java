@@ -1,46 +1,21 @@
 package pe.pardoschicken.reserva.model;
 
-import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 /**
  * Created by Orlando on 13/07/2017.
  */
-@Entity
-@Table(name = "reserva")
 public class Reserva {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "cod_reserva")
     private int codReserva;
-
-    @Column(name = "fecha_reserva")
     private Date fechaReserva;
-
-    @Column(name = "tipo_reserva")
     private String tipoReserva;
-
-    @Column(name = "motivo")
     private String motivo;
-
-    @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
     private Date fecha;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente")
     private Cliente cliente;
-
-    @ManyToOne
-    @JoinColumn(name = "cod_local")
     private Local local;
-
-    @OneToMany(mappedBy = "hora", fetch = FetchType.LAZY)
     private List<Hora> horas;
-
-    @OneToMany(mappedBy = "reserva_pedido", fetch = FetchType.LAZY)
     private List<ReservaPedido> reservaPedidos;
 
     public int getCodReserva() {

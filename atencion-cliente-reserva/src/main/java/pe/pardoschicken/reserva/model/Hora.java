@@ -1,29 +1,15 @@
 package pe.pardoschicken.reserva.model;
 
-import javax.persistence.*;
 import java.sql.Time;
 
 /**
  * Created by Orlando on 13/07/2017.
  */
-@Entity
-@Table(name = "hora")
 public class Hora {
 
-    @Column(name = "hora_reserva")
     private Time horaReserva;
-
-    @Column(name = "final_aprox")
     private Time finalAprox;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "cod_reserva")
     private Reserva codReserva;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "id_mesa")
     private Mesa idMesa;
 
     public Time getHoraReserva() {

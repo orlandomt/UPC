@@ -1,42 +1,20 @@
 package pe.pardoschicken.reserva.model;
 
-import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by Orlando on 13/07/2017.
  */
-@Entity
-@Table(name = "cliente")
 public class Cliente {
 
-    @Id
-    @Column(name = "dni")
     private String dni;
-
-    @Column(name = "nombre")
     private String nombre;
-
-    @Column(name = "ap_paterno")
     private String apPaterno;
-
-    @Column(name = "ap_materno")
     private String apMaterno;
-
-    @Column(name = "direccion")
     private String direccion;
-
-    @Column(name = "telefono")
     private String telefono;
-
-    @Column(name = "correo")
     private String correo;
-
-    @OneToOne
-    @JoinColumn(name = "reniec_dni")
     private Reniec dniReniec;
-
-    @OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY)
     private List<Reserva> reservas;
 
     public String getDni() {
