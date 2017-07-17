@@ -18,8 +18,8 @@
     <resultMap id="Hora" type="pe.pardoschicken.reserva.model.Hora">
         <result property="horaReserva" column="hora_reserva" />
         <result property="finalAprox" column="final_aprox" />
-        <association property="codReserva" resultMap="Reserva" />
-        <association property="idMesa" resultMap="Mesa" />
+        <!--<association property="codReserva" resultMap="Reserva" />
+        <association property="idMesa" resultMap="Mesa" /> -->
     </resultMap>
 
     <resultMap id="Local" type="pe.pardoschicken.reserva.model.Local">
@@ -62,7 +62,7 @@
         <result property="motivo" column="motivo" />
         <result property="fecha" column="fecha" />
         <association property="cliente" resultMap="Cliente" />
-        <association property="local" resultMap="Local" />
+        <!-- <association property="local" resultMap="Local" /> -->
         <collection property="horas" resultMap="Hora" />
         <collection property="reservaPedidos" resultMap="ReservaPedido" />
     </resultMap>
@@ -74,6 +74,19 @@
 
     <select id="buscarPorDni" resultMap="Reniec" resultSetType="FORWARD_ONLY">
         select * from reniec where dni = #{dni}
+    </select>
+    
+    <select id="buscarReserva" resultMap="Local, Reserva, Hora, Cliente" resultSetType="FORWARD_ONLY">
+        select l.ubicacion, r.cod_reserva, r.fecha_reserva, r.tipo_reserva, h.hora_reserva, c.nombre
+        from local l, reserva r, hora h, cliente c
+        where l.cod_local = r.cod_local
+        and r.cod_reserva = h.cod_reserva
+        and r.dni = c.dni
+        and l.cod_local = #{codLocal}
+        and r.fecha_reserva between #{fechaInicial} and #{fechaFin}
+        and r.tipo_reserva = #{tipoReserva}
+        and c.ap_paterno = #{apPaterno}
+        and c.nombre = #{nombre}
     </select>
 
 </mapper>

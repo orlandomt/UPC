@@ -14,7 +14,7 @@ public class Reserva {
     private String motivo;
     private Date fecha;
     private Cliente cliente;
-    private Local local;
+    //private Local local;
     private List<Hora> horas;
     private List<ReservaPedido> reservaPedidos;
 
@@ -66,13 +66,13 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public Local getLocal() {
+    /*public Local getLocal() {
         return local;
     }
 
     public void setLocal(Local local) {
         this.local = local;
-    }
+    }*/
 
     public List<Hora> getHoras() {
         return horas;

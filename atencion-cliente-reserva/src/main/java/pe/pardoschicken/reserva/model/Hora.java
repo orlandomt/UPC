@@ -9,8 +9,8 @@ public class Hora {
 
     private Time horaReserva;
     private Time finalAprox;
-    private Reserva codReserva;
-    private Mesa idMesa;
+    //private Reserva codReserva;
+    //private Mesa idMesa;
 
     public Time getHoraReserva() {
         return horaReserva;
@@ -28,7 +28,7 @@ public class Hora {
         this.finalAprox = finalAprox;
     }
 
-    public Reserva getCodReserva() {
+    /*public Reserva getCodReserva() {
         return codReserva;
     }
 
@@ -42,5 +42,5 @@ public class Hora {
 
     public void setIdMesa(Mesa idMesa) {
         this.idMesa = idMesa;
-    }
+    }*/
 }
