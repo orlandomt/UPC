@@ -39,11 +39,6 @@ public class ReservaController {
     @RequestMapping(value = "/nuevareserva", method = RequestMethod.POST)
     public @ResponseBody String nuevaReserva(@RequestBody String json, @RequestParam("ubicacion") String ubicacion,
                                              @RequestParam("mesa") int numMesa, @RequestParam("hora") Time horaReserva) throws Exception{
-        System.out.println(json);
-        System.out.println(ubicacion);
-        System.out.println(numMesa);
-        System.out.println(horaReserva);
-
         reservaService.nuevaReserva(json, ubicacion, numMesa, horaReserva);
         return "Usuario Creado";
     }
