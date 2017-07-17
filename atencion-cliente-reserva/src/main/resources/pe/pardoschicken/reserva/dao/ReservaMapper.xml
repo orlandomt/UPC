@@ -10,7 +10,6 @@
         <result property="direccion" column="direccion" />
         <result property="telefono" column="telefono" />
         <result property="correo" column="correo" />
-        <result property="nombre" column="" />
         <association property="dniReniec" resultMap="Reniec" />
         <collection property="reservas" resultMap="Reserva" />
     </resultMap>

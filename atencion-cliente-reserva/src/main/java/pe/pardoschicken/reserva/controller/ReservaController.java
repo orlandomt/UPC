@@ -11,6 +11,7 @@ import java.sql.Date;
  * Created by Orlando on 15/07/2017.
  */
 @Controller
+@CrossOrigin(origins = "*")
 @RequestMapping("/reserva")
 public class ReservaController {
 
