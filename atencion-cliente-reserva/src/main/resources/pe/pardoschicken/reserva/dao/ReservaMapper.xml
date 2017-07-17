@@ -100,7 +100,7 @@
 
     <insert id="nuevoCliente" >
         insert into cliente (dni, nombre, ap_paterno, ap_materno, direccion, telefono, correo, reniec_dni)
-        values (#{dni}, #{nombre}, #{apPaterno}, #{apMaterno}, #{direccion}, #{telefono}, #{correo})
+        values (#{dni}, #{nombre}, #{apPaterno}, #{apMaterno}, #{direccion}, #{telefono}, #{correo}, #{reniecDni})
     </insert>
 
     <insert id="nuevaReserva">

@@ -10,7 +10,6 @@
         <result property="direccion" column="direccion" />
         <result property="telefono" column="telefono" />
         <result property="correo" column="correo" />
-        <result property="nombre" column="" />
         <association property="dniReniec" resultMap="Reniec" />
         <collection property="reservas" resultMap="Reserva" />
     </resultMap>
@@ -76,12 +75,41 @@
         select * from reniec where dni = #{dni}
     </select>
     
-    <select id="buscarReserva" resultMap="Local, Reserva, Hora" resultSetType="FORWARD_ONLY">
+    <select id="buscarReserva" resultMap="Local, Reserva, Hora, Cliente" resultSetType="FORWARD_ONLY">
         select l.ubicacion, r.cod_reserva, r.fecha_reserva, r.tipo_reserva, h.hora_reserva, c.nombre
         from local l, reserva r, hora h, cliente c
         where l.cod_local = r.cod_local
         and r.cod_reserva = h.cod_reserva
         and r.dni = c.dni
+        and l.cod_local = #{codLocal}
+        and r.fecha_reserva between #{fechaInicial} and #{fechaFin}
+        and r.tipo_reserva = #{tipoReserva}
+        and c.ap_paterno = #{apPaterno}
+        and c.nombre = #{nombre}
     </select>
 
+    <select id="buscarLocal" resultMap="Local" resultSetType="FORWARD_ONLY">
+        select cod_local from local where ubicacion = #{ubicacion}
+    </select>
+
+    <select id="buscarMesa" resultMap="Mesa" resultSetType="FORWARD_ONLY">
+        select id_mesa from mesa
+        where num_mesa = #{numMesa}
+        and cod_local = #{codLocal}
+    </select>
+
+    <insert id="nuevoCliente" >
+        insert into cliente (dni, nombre, ap_paterno, ap_materno, direccion, telefono, correo, reniec_dni)
+        values (#{dni}, #{nombre}, #{apPaterno}, #{apMaterno}, #{direccion}, #{telefono}, #{correo}, #{reniecDni})
+    </insert>
+
+    <insert id="nuevaReserva">
+        insert into reserva (fecha_reserva, tipo_reserva, motivo, fecha, dni, cod_local)
+        values (#{fechaReserva}, #{tipoReserva}, #{motivo}, #{fecha}, #{dni}, #{codLocal})
+    </insert>
+
+    <insert id="nuevaHora">
+        insert into hora (cod_reserva, id_mesa, hora_reserva, final_aprox)
+        values (#{codReserva}, #{idMesa}, #{horaReserva}, #{finalAprox})
+    </insert>
 </mapper>

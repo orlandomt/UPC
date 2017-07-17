@@ -26,7 +26,7 @@ public interface ReservaMapper {
 
     void nuevoCliente(@Param("dni") String dni, @Param("nombre") String nombre, @Param("apPaterno") String apPaterno,
                       @Param("apMaterno") String apMaterno, @Param("direccion") String direccion, @Param("telefono") String telefono,
-                      @Param("correo") String correo);
+                      @Param("correo") String correo, @Param("reniecDni") String reniecDni);
 
     void nuevaReserva(@Param("fechaReserva") Date fechaReserva, @Param("tipoReserva") String tipoReserva, @Param("motivo") String motivo,
                       @Param("fecha") Date fecha, @Param("dni") String dni, @Param("codLocal") int codLocal);
