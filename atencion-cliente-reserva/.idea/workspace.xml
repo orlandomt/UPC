@@ -4,8 +4,6 @@
     <list default="true" id="48ff9b60-863f-4fd1-b5a2-af0172603240" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/controller/ReservaController.java" afterPath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/controller/ReservaController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/dao/ReservaMapper.java" afterPath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/dao/ReservaMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/model/Hora.java" afterPath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/model/Hora.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/model/Reserva.java" afterPath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/model/Reserva.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/service/ReservaService.java" afterPath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/service/ReservaService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/service/impl/ReservaServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/service/impl/ReservaServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/pe/pardoschicken/reserva/dao/ReservaMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/pe/pardoschicken/reserva/dao/ReservaMapper.xml" />
@@ -25,8 +23,8 @@
       <file leaf-file-name="ReservaMapper.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/pe/pardoschicken/reserva/dao/ReservaMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="88" column="32" lean-forward="false" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+            <state relative-caret-position="945">
+              <caret line="114" column="13" lean-forward="false" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -61,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/dao/ReservaMapper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="19" column="61" lean-forward="false" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+              <caret line="33" column="54" lean-forward="true" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,8 +70,8 @@
       <file leaf-file-name="ReservaService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/service/ReservaService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+            <state relative-caret-position="357">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -119,8 +117,8 @@
       <file leaf-file-name="ReservaServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/service/impl/ReservaServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="819">
+              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,7 +128,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/controller/ReservaController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="378">
-              <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+              <caret line="28" column="35" lean-forward="false" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1195,19 +1193,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/model/Hora.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
-          <folding>
-            <marker date="1500259740609" expanded="false" signature="703:714" ph=" { " />
-            <marker date="1500259740609" expanded="false" signature="743:749" ph=" }" />
-            <marker date="1500259740609" expanded="false" signature="778:789" ph=" { " />
-            <marker date="1500259740609" expanded="false" signature="803:809" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/model/Reserva.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
@@ -1231,16 +1216,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/pe/pardoschicken/reserva/dao/ReservaMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="88" column="32" lean-forward="false" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+        <state relative-caret-position="945">
+          <caret line="114" column="13" lean-forward="false" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/model/Hora.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+          <folding>
+            <marker date="1500259740609" expanded="false" signature="703:714" ph=" { " />
+            <marker date="1500259740609" expanded="false" signature="743:749" ph=" }" />
+            <marker date="1500259740609" expanded="false" signature="778:789" ph=" { " />
+            <marker date="1500259740609" expanded="false" signature="803:809" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/dao/ReservaMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="19" column="61" lean-forward="false" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+          <caret line="33" column="54" lean-forward="true" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1249,8 +1247,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/service/ReservaService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        <state relative-caret-position="357">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1259,8 +1257,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/service/impl/ReservaServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="819">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1268,7 +1266,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/pe/pardoschicken/reserva/controller/ReservaController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
-          <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <caret line="28" column="35" lean-forward="false" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

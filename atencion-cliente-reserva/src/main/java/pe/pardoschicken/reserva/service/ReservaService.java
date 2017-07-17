@@ -1,6 +1,6 @@
 package pe.pardoschicken.reserva.service;
 
-import org.apache.ibatis.annotations.Param;
+import pe.pardoschicken.reserva.model.Cliente;
 import pe.pardoschicken.reserva.model.Reserva;
 
 import java.sql.Date;
@@ -12,5 +12,6 @@ public interface ReservaService {
 
     String buscarPorDni(String dni);
     String buscarReserva(int codLocal, Date fechaInicial, Date fechaFin, String tipoReserva, String apPaterno, String nombre);
+    void nuevaReserva(Cliente cliente, Reserva reserva, String ubicacion, int numMesa);
 
 }

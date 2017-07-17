@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.pardoschicken.reserva.dao.ReservaMapper;
-import pe.pardoschicken.reserva.model.Local;
-import pe.pardoschicken.reserva.model.Reniec;
-import pe.pardoschicken.reserva.model.Reserva;
+import pe.pardoschicken.reserva.model.*;
 import pe.pardoschicken.reserva.service.ReservaService;
 
 import java.sql.Date;
@@ -53,5 +51,19 @@ public class ReservaServiceImpl implements ReservaService{
 
         String json = gson.toJson(jsonObject);
         return json;
+    }
+
+    @Override
+    public void nuevaReserva(Cliente cliente, Reserva reserva, String ubicacion, int numMesa) {
+
+        //Obtengo ID de local para guardar en Reserva
+        Local local = reservaMapper.buscarLocal(ubicacion);
+
+        //Obtengo ID de mesa para guardar en Hora
+        Mesa mesa = reservaMapper.buscarMesa(numMesa, local.getCodLocal());
+
+        //Guardo cliente
+
+
     }
 }

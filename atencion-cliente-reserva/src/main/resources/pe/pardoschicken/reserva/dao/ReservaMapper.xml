@@ -89,4 +89,28 @@
         and c.nombre = #{nombre}
     </select>
 
+    <select id="buscarLocal" resultMap="Local" resultSetType="FORWARD_ONLY">
+        select cod_local from local where ubicacion = #{ubicacion}
+    </select>
+
+    <select id="buscarMesa" resultMap="Mesa" resultSetType="FORWARD_ONLY">
+        select id_mesa from mesa
+        where num_mesa = #{numMesa}
+        and cod_local = #{codLocal}
+    </select>
+
+    <insert id="nuevoCliente" >
+        insert into cliente (dni, nombre, ap_paterno, ap_materno, direccion, telefono, correo)
+        values (#{dni}, #{nombre}, #{apPaterno}, #{apMaterno}, #{direccion}, #{telefono}, #{correo})
+    </insert>
+
+    <insert id="nuevaReserva">
+        insert into reserva (fecha_reserva, tipo_reserva, motivo, fecha, dni, cod_local)
+        values (#{fechaReserva}, #{tipoReserva}, #{motivo}, #{fecha}, #{dni}, #{codLocal})
+    </insert>
+
+    <insert id="nuevaHora">
+        insert into hora (cod_reserva, id_mesa, hora_reserva, final_aprox)
+        values (#{codReserva}, #{idMesa}, #{horaReserva}, #{finalAprox})
+    </insert>
 </mapper>
