@@ -26,6 +26,7 @@ public class ReservaViewModel {
     private String correo;
     private String telefono;
     private String cod_mesa;
+    private String mesa;
     private String nombre_local;
     
 	public Long getCod_reserva() {
@@ -118,6 +119,12 @@ public class ReservaViewModel {
 	}
 	public void setNombre_local(String nombre_local) {
 		this.nombre_local = nombre_local;
+	}
+	public String getMesa() {
+		return mesa;
+	}
+	public void setMesa(String mesa) {
+		this.mesa = mesa;
 	}
 	
 	

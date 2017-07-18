@@ -7,8 +7,6 @@ import com.springboot.model.ReservaFilter;
 import com.springboot.model.ReservaResult;
 import com.springboot.model.ReservaViewModel;
 import com.springboot.service.ReservaService;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +44,16 @@ public class ReservaController {
 			result = new ReservaViewModel();
 		return result;
 	}
+	
+	@RequestMapping(value = "/getDisponibilidadMesas", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<List<MesaViewModel>> getDisponibilidadMesas(@RequestBody Long dni) throws Exception{
+        
+    	List<MesaViewModel> result;
+    	result = reservaService.getDisponibilidadMesas(dni);
+    	if(result == null)
+    		result = new ArrayList<>();
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 	
 	@RequestMapping(value = "/actualizarReserva", method = RequestMethod.POST)
 	public @ResponseBody NotificacionViewModel actualizarReserva(@RequestBody ReservaViewModel reservaModel) {

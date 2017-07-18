@@ -1,37 +1,46 @@
 package com.springboot.model;
 
-import java.util.Date;
-
 public class MesaViewModel {
 
 	private String cod_mesa;
-	private String tipo_mesa;
-	private Date fechaActual;
-	private String disponibilidad;
+	private boolean disponibilidad;
+	private String ambiente;
+	private String sugerencia;
+	private boolean reservado_dni;
+	
 	public String getCod_mesa() {
 		return cod_mesa;
 	}
 	public void setCod_mesa(String cod_mesa) {
 		this.cod_mesa = cod_mesa;
 	}
-	public String getTipo_mesa() {
-		return tipo_mesa;
-	}
-	public void setTipo_mesa(String tipo_mesa) {
-		this.tipo_mesa = tipo_mesa;
-	}
-	public Date getFechaActual() {
-		return fechaActual;
-	}
-	public void setFechaActual(Date fechaActual) {
-		this.fechaActual = fechaActual;
-	}
-	public String getDisponibilidad() {
+	public boolean isDisponibilidad() {
 		return disponibilidad;
 	}
-	public void setDisponibilidad(String disponibilidad) {
+	public void setDisponibilidad(boolean disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
+	public String getAmbiente() {
+		return ambiente;
+	}
+	public void setAmbiente(String ambiente) {
+		this.ambiente = ambiente;
+	}
+	public String getSugerencia() {
+		return sugerencia;
+	}
+	public void setSugerencia(String sugerencia) {
+		this.sugerencia = sugerencia;
+	}
+	public boolean isReservado_dni() {
+		return reservado_dni;
+	}
+	public void setReservado_dni(boolean reservado_dni) {
+		this.reservado_dni = reservado_dni;
+	}
+	
+	
+	
 	
 	
 }

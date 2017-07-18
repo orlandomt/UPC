@@ -24,4 +24,7 @@ public interface ReservaService {
 	MesaViewModel obtenerUltimaReservaClienteByDNI(Long dni);
 
 	NotificacionViewModel registrarReserva(ReservaViewModel reservaViewModel);
+
+	List<MesaViewModel> getDisponibilidadMesas(Long dni);
+
 }

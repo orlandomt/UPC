@@ -1,22 +1,19 @@
 package com.springboot.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "mesa")
 public class Mesa {
-
+	
 	private String cod_mesa;
-	private String tipo_mesa;
-	private Date fechaActual;
-	private String disponibilidad;
+	private boolean disponibilidad;
+	private String ambiente;
+	private String sugerencia;
+	private boolean reservado_dni;
 	
 	@Id
     @Column(name = "cod_mesa")
@@ -27,29 +24,38 @@ public class Mesa {
 		this.cod_mesa = cod_mesa;
 	}
 	
-	@Column(name = "tipo_mesa")
-	public String getTipo_mesa() {
-		return tipo_mesa;
-	}
-	public void setTipo_mesa(String tipo_mesa) {
-		this.tipo_mesa = tipo_mesa;
-	}
-	
-	@Column(name = "fechaActual")
-	public Date getFechaActual() {
-		return fechaActual;
-	}
-	public void setFechaActual(Date fechaActual) {
-		this.fechaActual = fechaActual;
-	}
-	
 	@Column(name = "disponibilidad")
-	public String getDisponibilidad() {
+	public boolean isDisponibilidad() {
 		return disponibilidad;
 	}
-	public void setDisponibilidad(String disponibilidad) {
+	public void setDisponibilidad(boolean disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
+	
+	@Column(name = "ambiente")
+	public String getAmbiente() {
+		return ambiente;
+	}
+	public void setAmbiente(String ambiente) {
+		this.ambiente = ambiente;
+	}
+	
+	@Column(name = "sugerencia")
+	public String getSugerencia() {
+		return sugerencia;
+	}
+	public void setSugerencia(String sugerencia) {
+		this.sugerencia = sugerencia;
+	}
+	
+	@Column(name = "reservado_dni")
+	public boolean isReservado_dni() {
+		return reservado_dni;
+	}
+	public void setReservado_dni(boolean reservado_dni) {
+		this.reservado_dni = reservado_dni;
+	}
+	
 	
 	
 }

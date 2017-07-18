@@ -131,6 +131,12 @@ public class ReservaServiceImpl implements ReservaService {
 		reservaJpaRepository.save(entity);
 		reservaJpaRepository.flush();
 		
+		Mesa mesaenti = new Mesa();
+		mesaenti.setCod_mesa(reservaModel.getMesa());
+		mesaenti.setDisponibilidad(true);
+		mesaJpaRepository.save(mesaenti);
+		mesaJpaRepository.flush();
+		
 		notificacion.setCodigo(1L);
 		notificacion.setSeverity("success");
 		notificacion.setSummary("Runakuna Success");
@@ -182,6 +188,11 @@ public class ReservaServiceImpl implements ReservaService {
 				dto.setCliente(clienteEntity);
 			}
 			
+			Mesa mesaenti = new Mesa();
+			mesaenti.setCod_mesa(reservaModel.getCod_mesa());
+			mesaenti.setDisponibilidad(false);
+			mesaJpaRepository.save(mesaenti);
+			mesaJpaRepository.flush();
 			
 			Mesa mesaEntity = mesaJpaRepository.obtenerMesaPorCodigo(reservaModel.getCod_mesa());
 			dto.setMesa(mesaEntity);
@@ -205,5 +216,10 @@ public class ReservaServiceImpl implements ReservaService {
 			e.printStackTrace();
 		}
 		return notificacion;
+	}
+
+	@Override
+	public List<MesaViewModel> getDisponibilidadMesas(Long dni) {
+		return reservaJdbcRepository.getDisponibilidadMesas(dni);
 	}
 }

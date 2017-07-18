@@ -56,6 +56,7 @@ public class ReservaJdbcRepository {
         sql.append(" re.dni AS dni, ");
         sql.append(" re.motivo AS motivo, ");
         sql.append(" re.hora AS hora, ");
+        sql.append(" me.cod_mesa AS mesa, ");
         sql.append(" re.comentario AS comentario, ");
         sql.append(" cl.nombre AS nombre_cliente, ");
         sql.append(" lo.nombre_local AS nombre_local, ");
@@ -65,6 +66,7 @@ public class ReservaJdbcRepository {
         sql.append(" FROM reserva re ");
         sql.append(" LEFT JOIN cliente cl ON re.dni = cl.dni ");
         sql.append(" LEFT JOIN local lo ON lo.cod_local = re.cod_local ");
+        sql.append(" LEFT JOIN mesa me ON me.cod_mesa = re.cod_mesa ");
         sql.append(" WHERE 1=1 ");
 
         sql.append(params.filter(" AND cl.ap_paterno = :ap_paterno ", filterViewModel.getAp_paterno()));
@@ -132,6 +134,32 @@ public class ReservaJdbcRepository {
 	    sql.append(params.filter(" AND re.dni = :dni ", dni));
 	    
 	    sql.append(" ORDER BY re.fecha_reserva DESC LIMIT 1 ");
+
+		return sql.toString();
+	}
+
+	public List<MesaViewModel> getDisponibilidadMesas(Long dni) {
+		WhereParams params = new WhereParams();
+
+        String sql = getDisponibilidadMesasQuery(dni, params);
+
+        return jdbcTemplate.query(sql,
+                params.getParams(), new BeanPropertyRowMapper<>(MesaViewModel.class));
+	}
+
+	private String getDisponibilidadMesasQuery(Long dni, WhereParams params) {
+		StringBuilder sql = new StringBuilder();
+
+        sql.append(" SELECT ");
+        sql.append(" re.cod_mesa AS cod_mesa, ");
+        sql.append(" re.disponibilidad AS disponibilidad, ");
+        sql.append(" re.ambiente AS ambiente, ");
+        sql.append(" re.sugerencia AS sugerencia, ");
+        sql.append(" re.reservado_dni AS reservado_dni ");
+        sql.append(" FROM mesa re ");
+//        sql.append(" LEFT JOIN local lo ON lo.cod_local = re.cod_local ");
+        sql.append(" WHERE 1=1 ");
+//        sql.append(params.filter(" AND lo.nombre_local = :nombre_local ", filterViewModel.getNombre_local()));
 
 		return sql.toString();
 	}
