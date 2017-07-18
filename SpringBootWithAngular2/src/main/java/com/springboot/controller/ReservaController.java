@@ -1,7 +1,11 @@
 package com.springboot.controller;
 
+import com.springboot.model.ClienteViewModel;
+import com.springboot.model.MesaViewModel;
+import com.springboot.model.NotificacionViewModel;
 import com.springboot.model.ReservaFilter;
 import com.springboot.model.ReservaResult;
+import com.springboot.model.ReservaViewModel;
 import com.springboot.service.ReservaService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -33,5 +37,53 @@ public class ReservaController {
     		result = new ArrayList<>();
     	return new ResponseEntity<>(result, HttpStatus.OK);
     }
+	
+	@RequestMapping(value = "/reservaByCode", method = RequestMethod.POST)
+	public @ResponseBody ReservaViewModel reservaByCode(@RequestBody Long code){
+		ReservaViewModel result = new ReservaViewModel();
+		result = reservaService.getReservaByCode(code);
+		if(result == null)
+			result = new ReservaViewModel();
+		return result;
+	}
+	
+	@RequestMapping(value = "/actualizarReserva", method = RequestMethod.POST)
+	public @ResponseBody NotificacionViewModel actualizarReserva(@RequestBody ReservaViewModel reservaModel) {
+		
+		NotificacionViewModel dto = reservaService.actualizarReserva(reservaModel);
+		return dto;
+	}
+	
+	@RequestMapping(value = "/anularReserva", method = RequestMethod.POST)
+	public @ResponseBody NotificacionViewModel anularReserva(@RequestBody ReservaViewModel reservaModel) {
+		
+		NotificacionViewModel dto = reservaService.anularReserva(reservaModel);
+		return dto;
+	}
+	
+	@RequestMapping(value = "/obtenerInformacionClienteByDNI", method = RequestMethod.POST)
+	public @ResponseBody ClienteViewModel obtenerInformacionClienteByDNI(@RequestBody Long dni) {
+		ClienteViewModel dto = reservaService.obtenerInformacionClienteByDNI(dni);
+		if(dto == null){
+			dto = new ClienteViewModel();
+		}
+		return dto;
+	}
+	
+	@RequestMapping(value = "/obtenerUltimaReservaClienteByDNI", method = RequestMethod.POST)
+	public @ResponseBody MesaViewModel obtenerUltimaReservaClienteByDNI(@RequestBody Long dni) {
+		MesaViewModel dto = reservaService.obtenerUltimaReservaClienteByDNI(dni);
+		if(dto == null){
+			dto = new MesaViewModel();
+		}
+		return dto;
+	}
+	
+	@RequestMapping(value = "/registrarReserva", method = RequestMethod.POST)
+	public @ResponseBody NotificacionViewModel registrarPermisoEmpleado(@RequestBody ReservaViewModel reservaViewModel) {
+		
+		NotificacionViewModel dto = reservaService.registrarReserva(reservaViewModel);
+		return dto;
+	}
 
 }

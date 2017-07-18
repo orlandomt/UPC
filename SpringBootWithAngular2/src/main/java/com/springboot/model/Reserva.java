@@ -22,7 +22,9 @@ public class Reserva {
     private String motivo;
     private Date fecha;
     private String hora;
+    private String cantidad_personas;
     private String estado;
+    private String comentario;
     private Cliente cliente;
     private Local local;
     private Mesa mesa;
@@ -111,6 +113,23 @@ public class Reserva {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	@Column(name = "cantidad_personas")
+	public String getCantidad_personas() {
+		return cantidad_personas;
+	}
+	public void setCantidad_personas(String cantidad_personas) {
+		this.cantidad_personas = cantidad_personas;
+	}
+	
+	@Column(name = "comentario")
+	public String getComentario() {
+		return comentario;
+	}
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+	
 	
 	
 	

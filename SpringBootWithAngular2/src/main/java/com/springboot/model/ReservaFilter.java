@@ -4,17 +4,18 @@ import java.util.Date;
 
 public class ReservaFilter {
 
-	private String cod_local;
+	private String nombre_local;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private String tipo_reserva;
 	private String ap_paterno;
 	private String nombre;
-	public String getCod_local() {
-		return cod_local;
+	
+	public String getNombre_local() {
+		return nombre_local;
 	}
-	public void setCod_local(String cod_local) {
-		this.cod_local = cod_local;
+	public void setNombre_local(String nombre_local) {
+		this.nombre_local = nombre_local;
 	}
 	public Date getFechaInicio() {
 		return fechaInicio;
