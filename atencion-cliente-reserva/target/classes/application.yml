@@ -1,6 +1,8 @@
 # Tomcat Configuration
 server.port: 8080
 server.contextPath: /pardoschicken
+frontend.server: localhost
+frontend.port: 4200
 
 # Datasource Configuration
 spring.datasource.driver: com.mysql.jdbc.Driver

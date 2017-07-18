@@ -25,6 +25,9 @@ public class ReservaServiceImpl implements ReservaService{
 
     @Autowired
     ReservaMapper reservaMapper;
+    
+    @Autowired
+    ReservaJdbcRepository reservaJdbcRepository;
 
     @Override
     public String buscarPorDni(String dni) {
@@ -95,4 +98,10 @@ public class ReservaServiceImpl implements ReservaService{
         //Guardo hora
         reservaMapper.nuevaHora(2, mesa.getIdMesa(), horaReserva, finalAprox);
     }
+
+	@Override
+	public List<ReservaResult> searchReserva(ReservaFilter reservaFilter) {
+		// TODO Auto-generated method stub
+		return reservaJdbcRepository.busquedaReserva(reservaFilter);
+	}
 }
