@@ -69,7 +69,7 @@ public class ReservaServiceImpl implements ReservaService {
 		dto.setCorreo(clienteEntity.getCorreo());
 		dto.setTelefono(clienteEntity.getTelefono());
 		
-		Mesa mesaEntity = mesaJpaRepository.obtenerMesaPorCodigo(reservaEntity.getMesa().getCod_mesa());
+		Mesa mesaEntity = mesaJpaRepository.findOne(reservaEntity.getMesa().getCod_mesa());
 		dto.setCod_mesa(mesaEntity.getCod_mesa());
 		
 		Local localEntity = localJpaRepository.findLocalByName(reservaEntity.getLocal().getNombre_local());
@@ -99,7 +99,7 @@ public class ReservaServiceImpl implements ReservaService {
 			Cliente clienteEntity = clienteJpaRepository.findOne(reservaModel.getDni());
 			dto.setCliente(clienteEntity);
 			
-			Mesa mesaEntity = mesaJpaRepository.obtenerMesaPorCodigo(reservaModel.getCod_mesa());
+			Mesa mesaEntity = mesaJpaRepository.findOne(reservaModel.getCod_mesa());
 			dto.setMesa(mesaEntity);
 			
 			Local localEntity = localJpaRepository.findLocalByName(reservaModel.getNombre_local());
@@ -194,7 +194,7 @@ public class ReservaServiceImpl implements ReservaService {
 			mesaJpaRepository.save(mesaenti);
 			mesaJpaRepository.flush();
 			
-			Mesa mesaEntity = mesaJpaRepository.obtenerMesaPorCodigo(reservaModel.getCod_mesa());
+			Mesa mesaEntity = mesaJpaRepository.findOne(reservaModel.getCod_mesa());
 			dto.setMesa(mesaEntity);
 			
 			Local localEntity = localJpaRepository.findLocalByName(reservaModel.getNombre_local());

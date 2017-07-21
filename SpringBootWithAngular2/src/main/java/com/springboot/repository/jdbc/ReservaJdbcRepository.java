@@ -119,8 +119,14 @@ public class ReservaJdbcRepository {
 		WhereParams params = new WhereParams();
 		String sql = obtenerUltimaReservaClienteByDNIQuery(dni, params);
 		
-		return jdbcTemplate.queryForObject(sql, params.getParams(),
+		MesaViewModel result=new MesaViewModel();
+		List<MesaViewModel> listaUltimaReservaCliente= jdbcTemplate.query(sql, params.getParams(),
 				new BeanPropertyRowMapper<MesaViewModel>(MesaViewModel.class));
+		if(listaUltimaReservaCliente!=null && listaUltimaReservaCliente.size()>0) {
+			result=listaUltimaReservaCliente.get(0);
+		}
+			
+		return result;
 	}
 
 	private String obtenerUltimaReservaClienteByDNIQuery(Long dni, WhereParams params) {
@@ -152,14 +158,14 @@ public class ReservaJdbcRepository {
 
         sql.append(" SELECT ");
         sql.append(" re.cod_mesa AS cod_mesa, ");
+        sql.append(" re.nombre_mesa AS nombre_mesa, ");
         sql.append(" re.disponibilidad AS disponibilidad, ");
-        sql.append(" re.ambiente AS ambiente, ");
-        sql.append(" re.sugerencia AS sugerencia, ");
-        sql.append(" re.reservado_dni AS reservado_dni ");
+        sql.append(" re.fecha_mesa AS fecha_mesa, ");
+        sql.append(" re.hora_mesa AS hora_mesa, ");
+        sql.append(" re.sugerencia_mesa AS sugerencia_mesa, ");
+        sql.append(" re.reservadoPor_mesa AS reservadoPor_mesa ");
         sql.append(" FROM mesa re ");
-//        sql.append(" LEFT JOIN local lo ON lo.cod_local = re.cod_local ");
         sql.append(" WHERE 1=1 ");
-//        sql.append(params.filter(" AND lo.nombre_local = :nombre_local ", filterViewModel.getNombre_local()));
 
 		return sql.toString();
 	}

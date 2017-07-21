@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.springboot.model.Mesa;
 
 @Repository
-public interface MesaJpaRepository extends CrudRepository<Mesa, String>, JpaRepository<Mesa,String>{
+public interface MesaJpaRepository extends CrudRepository<Mesa, Long>, JpaRepository<Mesa,Long>{
 
 	@Query("SELECT p FROM Mesa p WHERE p.cod_mesa = :cod_mesa ")
 	Mesa obtenerMesaPorCodigo(@Param("cod_mesa") String cod_mesa);

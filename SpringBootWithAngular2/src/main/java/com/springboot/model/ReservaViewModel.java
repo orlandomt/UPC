@@ -25,8 +25,8 @@ public class ReservaViewModel {
     private String ap_paterno;
     private String correo;
     private String telefono;
-    private String cod_mesa;
-    private String mesa;
+    private Long cod_mesa;
+    private Long mesa;
     private String nombre_local;
     
 	public Long getCod_reserva() {
@@ -96,10 +96,10 @@ public class ReservaViewModel {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public String getCod_mesa() {
+	public Long getCod_mesa() {
 		return cod_mesa;
 	}
-	public void setCod_mesa(String cod_mesa) {
+	public void setCod_mesa(Long cod_mesa) {
 		this.cod_mesa = cod_mesa;
 	}
 	public String getCantidad_personas() {
@@ -120,10 +120,10 @@ public class ReservaViewModel {
 	public void setNombre_local(String nombre_local) {
 		this.nombre_local = nombre_local;
 	}
-	public String getMesa() {
+	public Long getMesa() {
 		return mesa;
 	}
-	public void setMesa(String mesa) {
+	public void setMesa(Long mesa) {
 		this.mesa = mesa;
 	}
 	
