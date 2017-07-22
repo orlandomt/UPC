@@ -27,4 +27,8 @@ public interface ReservaService {
 
 	List<MesaViewModel> getDisponibilidadMesas(Long dni);
 
+	List<MesaViewModel> getMesaDisponibleByDateHour(ReservaViewModel reservaViewModel);
+
+	MesaViewModel verDisponibilidadMesa(Long cod_mesa);
+
 }

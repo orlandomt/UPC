@@ -71,6 +71,7 @@ public class ReservaServiceImpl implements ReservaService {
 		
 		Mesa mesaEntity = mesaJpaRepository.findOne(reservaEntity.getMesa().getCod_mesa());
 		dto.setCod_mesa(mesaEntity.getCod_mesa());
+		dto.setNombre_mesa(mesaEntity.getNombre_mesa());
 		
 		Local localEntity = localJpaRepository.findLocalByName(reservaEntity.getLocal().getNombre_local());
 		dto.setNombre_local(localEntity.getNombre_local());
@@ -99,7 +100,27 @@ public class ReservaServiceImpl implements ReservaService {
 			Cliente clienteEntity = clienteJpaRepository.findOne(reservaModel.getDni());
 			dto.setCliente(clienteEntity);
 			
+			Mesa mesaEntityAnterior = mesaJpaRepository.findOne(reservaModel.getCod_mesa_anterior());
+
+			Mesa mesaentiAnterior = new Mesa();
+			mesaentiAnterior.setCod_mesa(mesaEntityAnterior.getCod_mesa());
+			mesaentiAnterior.setDisponibilidad(true);
+			mesaentiAnterior.setFecha_mesa(mesaEntityAnterior.getFecha_mesa());
+			mesaentiAnterior.setHora_mesa(mesaEntityAnterior.getHora_mesa());
+			mesaentiAnterior.setNombre_mesa(mesaEntityAnterior.getNombre_mesa());
+			mesaJpaRepository.save(mesaentiAnterior);
+			mesaJpaRepository.flush();
+			
 			Mesa mesaEntity = mesaJpaRepository.findOne(reservaModel.getCod_mesa());
+			Mesa mesaentiNueva = new Mesa();
+			mesaentiNueva.setCod_mesa(mesaEntity.getCod_mesa());
+			mesaentiNueva.setDisponibilidad(false);
+			mesaentiNueva.setFecha_mesa(mesaEntity.getFecha_mesa());
+			mesaentiNueva.setHora_mesa(mesaEntity.getHora_mesa());
+			mesaentiNueva.setNombre_mesa(mesaEntity.getNombre_mesa());
+			mesaJpaRepository.save(mesaentiNueva);
+			mesaJpaRepository.flush();
+			
 			dto.setMesa(mesaEntity);
 			
 			Local localEntity = localJpaRepository.findLocalByName(reservaModel.getNombre_local());
@@ -113,6 +134,7 @@ public class ReservaServiceImpl implements ReservaService {
 			notificacion.setSummary("Runakuna Success");
 			notificacion.setDetail("Se actualizo exitosamente");
 			return notificacion;
+			
 		} catch (Exception e) {
 			notificacion.setCodigo(0L);
 			notificacion.setSeverity("error");
@@ -132,8 +154,11 @@ public class ReservaServiceImpl implements ReservaService {
 		reservaJpaRepository.flush();
 		
 		Mesa mesaenti = new Mesa();
-		mesaenti.setCod_mesa(reservaModel.getMesa());
+		mesaenti.setCod_mesa(reservaModel.getCod_mesa());
 		mesaenti.setDisponibilidad(true);
+		mesaenti.setFecha_mesa(reservaModel.getFecha_reserva());
+		mesaenti.setHora_mesa(reservaModel.getHora());
+		mesaenti.setNombre_mesa(reservaModel.getNombre_mesa());
 		mesaJpaRepository.save(mesaenti);
 		mesaJpaRepository.flush();
 		
@@ -191,6 +216,9 @@ public class ReservaServiceImpl implements ReservaService {
 			Mesa mesaenti = new Mesa();
 			mesaenti.setCod_mesa(reservaModel.getCod_mesa());
 			mesaenti.setDisponibilidad(false);
+			mesaenti.setFecha_mesa(reservaModel.getFecha_reserva());
+			mesaenti.setHora_mesa(reservaModel.getHora());
+			mesaenti.setNombre_mesa(reservaModel.getNombre_mesa());
 			mesaJpaRepository.save(mesaenti);
 			mesaJpaRepository.flush();
 			
@@ -221,5 +249,15 @@ public class ReservaServiceImpl implements ReservaService {
 	@Override
 	public List<MesaViewModel> getDisponibilidadMesas(Long dni) {
 		return reservaJdbcRepository.getDisponibilidadMesas(dni);
+	}
+
+	@Override
+	public List<MesaViewModel> getMesaDisponibleByDateHour(ReservaViewModel reservaViewModel) {
+		return reservaJdbcRepository.getMesaDisponibleByDateHour(reservaViewModel);
+	}
+
+	@Override
+	public MesaViewModel verDisponibilidadMesa(Long cod_mesa) {
+		return reservaJdbcRepository.verDisponibilidadMesa(cod_mesa);
 	}
 }

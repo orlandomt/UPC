@@ -25,6 +25,8 @@ public class ReservaResult {
     private String estado;
     private String nombre_cliente;
     private String nombre_local;
+    private Long cod_mesa;
+    private String nombre_mesa;
     private String mesa;
     
 	public Long getCod_reserva() {
@@ -101,6 +103,18 @@ public class ReservaResult {
 	}
 	public void setCantidad_personas(String cantidad_personas) {
 		this.cantidad_personas = cantidad_personas;
+	}
+	public Long getCod_mesa() {
+		return cod_mesa;
+	}
+	public void setCod_mesa(Long cod_mesa) {
+		this.cod_mesa = cod_mesa;
+	}
+	public String getNombre_mesa() {
+		return nombre_mesa;
+	}
+	public void setNombre_mesa(String nombre_mesa) {
+		this.nombre_mesa = nombre_mesa;
 	}
 	
 	

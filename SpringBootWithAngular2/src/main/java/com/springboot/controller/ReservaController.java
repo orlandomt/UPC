@@ -55,6 +55,16 @@ public class ReservaController {
     	return new ResponseEntity<>(result, HttpStatus.OK);
     }
 	
+	@RequestMapping(value = "/getMesaDisponibleByDateHour", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<List<MesaViewModel>> getMesaDisponibleByDateHour(@RequestBody ReservaViewModel reservaViewModel) throws Exception{
+        
+    	List<MesaViewModel> result;
+    	result = reservaService.getMesaDisponibleByDateHour(reservaViewModel);
+    	if(result == null)
+    		result = new ArrayList<>();
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+	
 	@RequestMapping(value = "/actualizarReserva", method = RequestMethod.POST)
 	public @ResponseBody NotificacionViewModel actualizarReserva(@RequestBody ReservaViewModel reservaModel) {
 		
@@ -81,6 +91,15 @@ public class ReservaController {
 	@RequestMapping(value = "/obtenerUltimaReservaClienteByDNI", method = RequestMethod.POST)
 	public @ResponseBody MesaViewModel obtenerUltimaReservaClienteByDNI(@RequestBody Long dni) {
 		MesaViewModel dto = reservaService.obtenerUltimaReservaClienteByDNI(dni);
+		if(dto == null){
+			dto = new MesaViewModel();
+		}
+		return dto;
+	}
+	
+	@RequestMapping(value = "/verDisponibilidadMesa", method = RequestMethod.POST)
+	public @ResponseBody MesaViewModel verDisponibilidadMesa(@RequestBody Long cod_mesa) {
+		MesaViewModel dto = reservaService.verDisponibilidadMesa(cod_mesa);
 		if(dto == null){
 			dto = new MesaViewModel();
 		}

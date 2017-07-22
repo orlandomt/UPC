@@ -56,7 +56,8 @@ public class ReservaJdbcRepository {
         sql.append(" re.dni AS dni, ");
         sql.append(" re.motivo AS motivo, ");
         sql.append(" re.hora AS hora, ");
-        sql.append(" me.cod_mesa AS mesa, ");
+        sql.append(" me.cod_mesa AS cod_mesa, ");
+        sql.append(" me.nombre_mesa AS nombre_mesa, ");
         sql.append(" re.comentario AS comentario, ");
         sql.append(" cl.nombre AS nombre_cliente, ");
         sql.append(" lo.nombre_local AS nombre_local, ");
@@ -133,6 +134,7 @@ public class ReservaJdbcRepository {
 		StringBuilder sql = new StringBuilder();
 		
 		sql.append(" SELECT ");
+        sql.append(" me.nombre_mesa AS nombre_mesa, ");
         sql.append(" me.cod_mesa AS cod_mesa ");
 		sql.append(" FROM reserva re ");
 		sql.append(" LEFT JOIN mesa me ON re.cod_mesa = me.cod_mesa ");
@@ -167,6 +169,66 @@ public class ReservaJdbcRepository {
         sql.append(" FROM mesa re ");
         sql.append(" WHERE 1=1 ");
 
+		return sql.toString();
+	}
+
+	public List<MesaViewModel> getMesaDisponibleByDateHour(ReservaViewModel reservaViewModel) {
+		WhereParams params = new WhereParams();
+
+        String sql = getMesaDisponibleByDateHourQuery(reservaViewModel, params);
+
+        return jdbcTemplate.query(sql,
+                params.getParams(), new BeanPropertyRowMapper<>(MesaViewModel.class));
+	}
+
+	private String getMesaDisponibleByDateHourQuery(ReservaViewModel reservaViewModel, WhereParams params) {
+		StringBuilder sql = new StringBuilder();
+
+        sql.append(" SELECT ");
+        sql.append(" re.cod_mesa AS cod_mesa, ");
+        sql.append(" re.nombre_mesa AS nombre_mesa, ");
+        sql.append(" re.disponibilidad AS disponibilidad, ");
+        sql.append(" re.fecha_mesa AS fecha_mesa, ");
+        sql.append(" re.hora_mesa AS hora_mesa, ");
+        sql.append(" re.sugerencia_mesa AS sugerencia_mesa, ");
+        sql.append(" re.reservadoPor_mesa AS reservadoPor_mesa ");
+        sql.append(" FROM mesa re ");
+        sql.append(" WHERE 1=1 ");
+        sql.append(params.filter(" AND re.fecha_mesa = :fecha_mesa ", reservaViewModel.getFecha_reserva()));
+        sql.append(params.filter(" AND re.hora_mesa = :hora_mesa ", reservaViewModel.getHora()));
+
+        sql.append(" Order by re.nombre_mesa asc ");
+		return sql.toString();
+	}
+
+	public MesaViewModel verDisponibilidadMesa(Long cod_mesa) {
+        
+        WhereParams params = new WhereParams();
+		String sql = verDisponibilidadMesaQuery(cod_mesa, params);
+		
+		MesaViewModel result=new MesaViewModel();
+		List<MesaViewModel> listaUltimaReservaCliente= jdbcTemplate.query(sql, params.getParams(),
+				new BeanPropertyRowMapper<MesaViewModel>(MesaViewModel.class));
+		if(listaUltimaReservaCliente!=null && listaUltimaReservaCliente.size()>0) {
+			result=listaUltimaReservaCliente.get(0);
+		}
+			
+		return result;
+	}
+
+	private String verDisponibilidadMesaQuery(Long cod_mesa, WhereParams params) {
+		StringBuilder sql = new StringBuilder();
+
+        sql.append(" SELECT ");
+        sql.append(" re.cod_mesa AS cod_mesa, ");
+        sql.append(" re.nombre_mesa AS nombre_mesa, ");
+        sql.append(" re.disponibilidad AS disponibilidad, ");
+        sql.append(" re.fecha_mesa AS fecha_mesa, ");
+        sql.append(" re.hora_mesa AS hora_mesa, ");
+        sql.append(" re.sugerencia_mesa AS sugerencia_mesa, ");
+        sql.append(" re.reservadoPor_mesa AS reservadoPor_mesa ");
+        sql.append(" FROM mesa re ");
+        sql.append(" WHERE 1=1 ");
 		return sql.toString();
 	}
 	
