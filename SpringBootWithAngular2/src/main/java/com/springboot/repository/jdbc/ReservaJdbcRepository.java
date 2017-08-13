@@ -15,7 +15,10 @@ import org.springframework.stereotype.Repository;
 import com.springboot.config.DateUtil;
 import com.springboot.config.WhereParams;
 import com.springboot.model.ClienteViewModel;
+import com.springboot.model.DeliveryResult;
 import com.springboot.model.MesaViewModel;
+import com.springboot.model.PedidoDetalleResult;
+import com.springboot.model.PedidoResult;
 import com.springboot.model.ReservaFilter;
 import com.springboot.model.ReservaResult;
 import com.springboot.model.ReservaViewModel;
@@ -231,6 +234,81 @@ public class ReservaJdbcRepository {
         sql.append(" WHERE 1=1 ");
 		return sql.toString();
 	}
+
+	public List<PedidoResult> buscarTodoPedido() {
+		WhereParams params = new WhereParams();
+
+        String sql = buscarTodoPedidoQuery(params);
+
+        return jdbcTemplate.query(sql,
+                params.getParams(), new BeanPropertyRowMapper<>(PedidoResult.class));
+	}
+
+	private String buscarTodoPedidoQuery(WhereParams params) {
+		
+		StringBuilder sql = new StringBuilder();
+
+        sql.append(" SELECT ");
+        sql.append(" re.id_pedido AS id_pedido, ");
+        sql.append(" re.dni AS dni ");
+        sql.append(" FROM pedido re ");
+        sql.append(" WHERE 1=1 ");
+        
+		return sql.toString();
+	}
+
+	public List<DeliveryResult> buscarTodoDelivery() {
+		WhereParams params = new WhereParams();
+
+        String sql = buscarTodoDeliveryQuery(params);
+
+        return jdbcTemplate.query(sql,
+                params.getParams(), new BeanPropertyRowMapper<>(DeliveryResult.class));
+	}
+
+	private String buscarTodoDeliveryQuery(WhereParams params) {
+		StringBuilder sql = new StringBuilder();
+
+        sql.append(" SELECT ");
+        sql.append(" re.id_deliv AS id_deliv, ");
+        sql.append(" re.latitude AS latitude, ");
+        sql.append(" re.longitud AS longitud, ");
+        sql.append(" re.dni AS dni, ");
+        sql.append(" re.estado_deliv AS estado_deliv, ");
+        sql.append(" re.fecha_deliv AS fecha_deliv, ");
+        sql.append(" re.horaestimada_deliv AS horaestimada_deliv, ");
+        sql.append(" re.cod_carta_deliv AS cod_carta_deliv ");
+        
+        
+        sql.append(" FROM delivery re ");
+        sql.append(" WHERE 1=1 ");
+        
+		return sql.toString();
+	}
+
+	public List<PedidoDetalleResult> obtenerPedidoDetalleById(Long code) {
+		WhereParams params = new WhereParams();
+
+        String sql = obtenerPedidoDetalleByIdQuery(code, params);
+
+        return jdbcTemplate.query(sql,
+                params.getParams(), new BeanPropertyRowMapper<>(PedidoDetalleResult.class));
+	}
+
+	private String obtenerPedidoDetalleByIdQuery(Long code, WhereParams params) {
+		StringBuilder sql = new StringBuilder();
+
+        sql.append(" SELECT ");
+        sql.append(" re.id_pedidetalle AS id_pedidetalle, ");
+        sql.append(" re.cod_carta AS cod_carta, ");
+        sql.append(" re.id_pedido AS id_pedido ");
+        sql.append(" FROM pedidodetalle re ");
+        sql.append(" WHERE 1=1 ");
+        sql.append(params.filter(" AND re.id_pedido = :id_pedido ", code));
+        
+		return sql.toString();
+	}
+
 	
 	
 

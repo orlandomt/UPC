@@ -7,10 +7,13 @@ import com.springboot.repository.jpa.MesaJpaRepository;
 import com.springboot.repository.jpa.ReservaJpaRepository;
 import com.springboot.model.Cliente;
 import com.springboot.model.ClienteViewModel;
+import com.springboot.model.DeliveryResult;
 import com.springboot.model.Local;
 import com.springboot.model.Mesa;
 import com.springboot.model.MesaViewModel;
 import com.springboot.model.NotificacionViewModel;
+import com.springboot.model.PedidoDetalleResult;
+import com.springboot.model.PedidoResult;
 import com.springboot.model.Reserva;
 import com.springboot.model.ReservaFilter;
 import com.springboot.model.ReservaResult;
@@ -259,5 +262,20 @@ public class ReservaServiceImpl implements ReservaService {
 	@Override
 	public MesaViewModel verDisponibilidadMesa(Long cod_mesa) {
 		return reservaJdbcRepository.verDisponibilidadMesa(cod_mesa);
+	}
+
+	@Override
+	public List<PedidoResult> buscarTodoPedido() {
+		return reservaJdbcRepository.buscarTodoPedido();
+	}
+
+	@Override
+	public List<DeliveryResult> buscarTodoDelivery() {
+		return reservaJdbcRepository.buscarTodoDelivery();
+	}
+
+	@Override
+	public List<PedidoDetalleResult> obtenerPedidoDetalleById(Long code) {
+		return reservaJdbcRepository.obtenerPedidoDetalleById(code);
 	}
 }

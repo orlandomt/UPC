@@ -10,8 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "reniec")
 public class Reniec {
+	
 
-	private String reniec_dni;
+	private Long reniec_dni;
     private String nombre;
     private String ap_paterno;
     private String ap_materno;
@@ -19,10 +20,10 @@ public class Reniec {
     
     @Id
     @Column(name = "reniec_dni")
-    public String getReniec_dni() {
+    public Long getReniec_dni() {
 		return reniec_dni;
 	}
-	public void setReniec_dni(String reniec_dni) {
+	public void setReniec_dni(Long reniec_dni) {
 		this.reniec_dni = reniec_dni;
 	}
 	

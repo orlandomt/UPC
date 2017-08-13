@@ -1,8 +1,12 @@
 package com.springboot.controller;
 
 import com.springboot.model.ClienteViewModel;
+import com.springboot.model.DeliveryResult;
 import com.springboot.model.MesaViewModel;
 import com.springboot.model.NotificacionViewModel;
+import com.springboot.model.PedidoDetalle;
+import com.springboot.model.PedidoDetalleResult;
+import com.springboot.model.PedidoResult;
 import com.springboot.model.ReservaFilter;
 import com.springboot.model.ReservaResult;
 import com.springboot.model.ReservaViewModel;
@@ -112,5 +116,36 @@ public class ReservaController {
 		NotificacionViewModel dto = reservaService.registrarReserva(reservaViewModel);
 		return dto;
 	}
+	
+	//DASHBOARD
+	@RequestMapping(value = "/buscarTodoPedido", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<List<PedidoResult>> buscarTodoPedido(@RequestBody String all) throws Exception{
+        
+    	List<PedidoResult> result;
+    	result = reservaService.buscarTodoPedido();
+    	if(result == null)
+    		result = new ArrayList<>();
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/buscarTodoDelivery", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<List<DeliveryResult>> buscarTodoDelivery(@RequestBody String all) throws Exception{
+        
+    	List<DeliveryResult> result;
+    	result = reservaService.buscarTodoDelivery();
+    	if(result == null)
+    		result = new ArrayList<>();
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/obtenerPedidoDetalleById", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<List<PedidoDetalleResult>> obtenerPedidoDetalleById(@RequestBody Long code) throws Exception{
+        
+    	List<PedidoDetalleResult> result;
+    	result = reservaService.obtenerPedidoDetalleById(code);
+    	if(result == null)
+    		result = new ArrayList<>();
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 
 }
